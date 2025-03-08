@@ -67,74 +67,74 @@ const HiringPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Hiring Form</h1>
-
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-        <label className="block text-gray-700 font-medium">Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          placeholder="Enter your name"
-        />
-
-        <label className="block text-gray-700 font-medium mt-3">Age:</label>
-        <input
-          type="number"
-          name="age"
-          value={formData.age}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          placeholder="Enter your age"
-        />
-
-        <label className="block text-gray-700 font-medium mt-3">Gender:</label>
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-        >
-          <option value="">Select Gender</option>
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-        </select>
-
-        <label className="block text-gray-700 font-medium mt-3">Phone:</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          placeholder="Enter your phone number"
-        />
-
-        <label className="block text-gray-700 font-medium mt-3">Upload Image:</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-        />
-
-        {imageUrl && (
-          <img src={imageUrl} alt="Uploaded" className="mt-3 rounded-lg shadow-md" />
-        )}
-
-        <button
-          onClick={sendToWhatsApp}
-          className="w-full mt-4 bg-green-500 text-white p-2 rounded-lg hover:bg-green-600"
-        >
-          Send to WhatsApp
-        </button>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F9F7F2] p-6">
+        <h1 className="text-3xl font-bold text-[#3E2D2C] mb-4"> We Are Hiring</h1>
+  
+        <div className=" shadow-lg rounded-lg p-6 w-full max-w-md">
+          <label className="block text-[#3E2D2C] font-medium">Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full p-2 border border-[#D1BEB0] rounded mt-1 text-[#3E2D2C] focus:outline-none focus:ring-2 focus:ring-[#5C3B44]"
+            placeholder="Enter your name"
+          />
+  
+          <label className="block text-[#3E2D2C] font-medium mt-3">Age:</label>
+          <input
+            type="number"
+            name="age"
+            value={formData.age}
+            onChange={handleChange}
+            className="w-full p-2 border border-[#D1BEB0] rounded mt-1 text-[#3E2D2C] focus:outline-none focus:ring-2 focus:ring-[#5C3B44]"
+            placeholder="Enter your age"
+          />
+  
+          <label className="block text-[#3E2D2C] font-medium mt-3">Gender:</label>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            className="w-full p-2 border border-[#D1BEB0] rounded mt-1 text-[#3E2D2C] focus:outline-none focus:ring-2 focus:ring-[#5C3B44]"
+          >
+            <option value="">Select Gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+  
+          <label className="block text-[#3E2D2C] font-medium mt-3">Phone:</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full p-2 border border-[#D1BEB0] rounded mt-1 text-[#3E2D2C] focus:outline-none focus:ring-2 focus:ring-[#5C3B44]"
+            placeholder="Enter your phone number"
+          />
+  
+          <label className="block text-[#3E2D2C] font-medium mt-3">Upload Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="w-full p-2 border border-[#D1BEB0] rounded mt-1 text-[#3E2D2C] focus:outline-none focus:ring-2 focus:ring-[#5C3B44]"
+          />
+  
+          {imageUrl && (
+            <img src={imageUrl} alt="Uploaded" className="mt-3 rounded-lg shadow-md" />
+          )}
+  
+          <button
+            onClick={sendToWhatsApp}
+            className="w-full mt-4 bg-[#5C3B44] text-white p-2 rounded-lg hover:bg-[#3E2D2C] transition duration-300"
+          >
+            Send to WhatsApp
+          </button>
+        </div>
+  
+        <ToastContainer />
       </div>
-
-      <ToastContainer />
-    </div>
   );
 };
 

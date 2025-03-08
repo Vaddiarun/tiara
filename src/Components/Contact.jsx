@@ -43,9 +43,9 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#F9F7F2]">
+      <div className=" shadow-lg rounded-lg p-6 w-full max-w-lg">
+        <h2 className="text-2xl font-bold text-center text-[#3E2D2C] mb-4">
           Contact Us
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -55,7 +55,7 @@ const Contact = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5C3B44] text-[#3E2D2C]"
             required
           />
           <input
@@ -64,7 +64,7 @@ const Contact = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5C3B44] text-[#3E2D2C]"
             required
           />
           <textarea
@@ -73,12 +73,12 @@ const Contact = () => {
             onChange={handleChange}
             placeholder="Your Message"
             rows="4"
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5C3B44] text-[#3E2D2C]"
             required
           />
           <button
             type="submit"
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center"
+            className="w-full bg-[#5C3B44] hover:bg-[#3E2D2C] text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center justify-center"
           >
             <FaWhatsapp className="mr-2" /> Send to WhatsApp
           </button>
