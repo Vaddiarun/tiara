@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com"; // Import emailjs library
 import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const massageTypes = [
   {
@@ -123,24 +124,65 @@ const Home = () => {
 
   return (
     <div className="bg-[#F9F7F2] ">
-   <header className="text-center py-16 bg-[#F9F7F2] text-[#3E2D2C]">
-  {/* ✅ Experience Section */}
-  <div className="mt-6 px-6 max-w-4xl mx-auto mt-[80px]">
-    <h2 className="text-xl lg:text-2xl font-semibold text-[#5C3B44]">
-      Experience Tiara Spa Near You
-    </h2>
-    <p className="mt-3 text-[#3E2D2C] leading-relaxed">
-      The daily grind of work and personal life takes a toll on your body and mind.
-      A regular spa helps you unwind, relax, and re-energize. Choose from our signature,
-      home-crafted massages & therapies or opt for the classic Deep Tissue Massage,
-      Swedish Massage, Ayurvedic Massages, or the Thai Massage.
-    </p>
-    <p className="mt-3 text-[#3E2D2C] leading-relaxed">
-      Tiara Spa therapies will help keep your body running smoothly, so you can
-      conquer that half marathon or power through a full day of meetings.
-    </p>
-  </div>
-</header>
+    <div className="bg-[#F9F7F2]">
+  {/* ✅ Image Section */}
+  <motion.div
+      className="w-full h-60 md:h-80 lg:h-96"
+      initial={{ opacity: 0, scale: 0.8 }} // Start small and hidden
+      animate={{ opacity: 1, scale: 1 }} // Fade in and zoom in
+      transition={{ duration: 1, ease: "easeOut" }} // Smooth effect
+    >
+      <motion.img
+        className="w-full h-full object-cover"
+        src="https://media.istockphoto.com/id/1325095289/photo/still-life-closeup-of-a-tranquil-spa-arrangement.jpg?s=612x612&w=0&k=20&c=yrNXIAA1mSSzypzbKMTl4807nRG4S8rs5RsWb-J0M9U="
+        alt="Spa Arrangement"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      />
+    </motion.div>
+
+  {/* ✅ Header Section */}
+  <header className="text-center py-16 bg-[#F9F7F2] text-[#3E2D2C]">
+      {/* ✅ Experience Section */}
+      <motion.div
+        className="px-6 max-w-4xl mx-auto"
+        initial={{ opacity: 0, y: 50 }} // Start hidden and move up
+        animate={{ opacity: 1, y: 0 }} // Animate to visible
+        transition={{ duration: 1, ease: "easeOut" }} // Smooth animation
+      >
+        <motion.h2
+          className="text-xl lg:text-2xl font-semibold text-[#5C3B44]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+        >
+          Experience Tiara Spa Near You
+        </motion.h2>
+        <motion.p
+          className="mt-3 text-[#3E2D2C] leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        >
+          The daily grind of work and personal life takes a toll on your body and mind.
+          A regular spa helps you unwind, relax, and re-energize. Choose from our signature,
+          home-crafted massages & therapies or opt for the classic Deep Tissue Massage,
+          Swedish Massage, Ayurvedic Massages, or the Thai Massage.
+        </motion.p>
+        <motion.p
+          className="mt-3 text-[#3E2D2C] leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          Tiara Spa therapies will help keep your body running smoothly, so you can
+          conquer that half marathon or power through a full day of meetings.
+        </motion.p>
+      </motion.div>
+    </header>
+</div>
+
       <section className="container mx-auto py-10 px-4">
         <h2 className="text-2xl font-semibold text-[#3E2D2C] mb-6 text-center">
           Our Premium Massage Services
