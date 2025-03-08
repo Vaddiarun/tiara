@@ -124,24 +124,37 @@ import React from "react";
 const About = () => {
   const testimonials = [
     {
-      name: "Lucky",
+      name: "Kunal",
       review:
         "Absolutely amazing service! The therapist was professional and very skilled. Highly recommend!",
       rating: 5,
     },
     {
-      name: "Yasmeen",
+      name: "Gautam",
       review:
         "Convenient, relaxing, and worth every penny. Will definitely book again!",
       rating: 4,
     },
     {
-      name: "Bhanu",
+      name: "Deepthi",
       review:
         "Loved the experience! Perfect for unwinding after a long day. Excellent service.",
       rating: 5,
     },
+    {
+      name: "Vamsi",
+      review:
+        "The service exceeded my expectations. The atmosphere was calm, and the therapist was highly skilled.",
+      rating: 5,
+    },
+    {
+      name: "Anusha",
+      review:
+        "Great experience! The staff was friendly and professional. Would definitely recommend to friends.",
+      rating: 4,
+    },
   ];
+  
 
   const renderStars = (count) => {
     return Array.from({ length: 5 }, (_, index) => (

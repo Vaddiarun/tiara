@@ -136,13 +136,11 @@ const Home = () => {
       Swedish Massage, Ayurvedic Massages, or the Thai Massage.
     </p>
     <p className="mt-3 text-[#3E2D2C] leading-relaxed">
-      Tattva Spa therapies will help keep your body running smoothly, so you can
+      Tiara Spa therapies will help keep your body running smoothly, so you can
       conquer that half marathon or power through a full day of meetings.
     </p>
   </div>
 </header>
-
-
       <section className="container mx-auto py-10 px-4">
         <h2 className="text-2xl font-semibold text-[#3E2D2C] mb-6 text-center">
           Our Premium Massage Services
@@ -186,7 +184,7 @@ const Home = () => {
             <form className="space-y-4" onSubmit={handleSubmit}>
               <input
                 type="text"
-                placeholder="Username"
+                placeholder="name"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5C3B44]"
