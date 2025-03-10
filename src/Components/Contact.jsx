@@ -89,7 +89,7 @@ const Contact = () => {
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <FaInstagram className="text-2xl text-pink-500 hover:text-pink-600" />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/people/Tiara-Spa/100082829139771/" target="_blank" rel="noopener noreferrer">
             <FaFacebook className="text-2xl text-blue-600 hover:text-blue-700" />
           </a>
         </div>

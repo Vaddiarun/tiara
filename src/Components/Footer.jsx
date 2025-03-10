@@ -1,6 +1,6 @@
 import React from "react";
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
-
+import { FaGoogle } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-[#f9f5f0] text-[#5b3430] py-6 text-center border-t border-[#d8cfcf]">
@@ -35,12 +35,20 @@ const Footer = () => {
             <FaInstagram />
           </a>
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/people/Tiara-Spa/100082829139771/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#5b3430] text-2xl hover:text-blue-500"
           >
             <FaFacebook />
+          </a>
+          <a
+            href="https://g.co/kgs/Y4Lf5qQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#5b3430] text-2xl hover:text-blue-500"
+          >
+         <FaGoogle />
           </a>
         </div>
       </div>
