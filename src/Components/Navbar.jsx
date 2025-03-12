@@ -57,14 +57,19 @@ const Navbar = () => {
               exit={{ x: "-100%", opacity: 0, transition: { duration: 0.3 } }}
               className="menu-container lg:hidden absolute left-0 top-0 backdrop-blur-xl bg-[#F9F7F2]/90 w-3/4 h-screen p-10 flex flex-col items-center text-center shadow-2xl z-50 rounded-r-xl"
             >
-              {['Home', 'About', 'Contact', 'Hiring'].map((item, index) => (
-                <li key={index} className="my-4 w-full">
-                  <Link to={`/${item.toLowerCase()}`} className="text-xl font-semibold text-[#5C3B44] relative group transition duration-300 ease-in-out" onClick={handleMenuClose}>
-                    {item}
-                    <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#A0A051] transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                </li>
-              ))}
+            {['Home', 'About', 'Contact', 'Hiring'].map((item, index) => (
+  <li key={index} className="my-4 w-full">
+    <Link
+      to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+      className="text-xl font-semibold text-[#5C3B44] relative group transition duration-300 ease-in-out"
+      onClick={handleMenuClose}
+    >
+      {item}
+      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#A0A051] transition-all duration-300 group-hover:w-full"></span>
+    </Link>
+  </li>
+))}
+
             </motion.ul>
           )}
         </AnimatePresence>
