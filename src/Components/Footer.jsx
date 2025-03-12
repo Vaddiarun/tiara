@@ -4,7 +4,7 @@ import { FaGoogle } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-[#f9f5f0] text-[#5b3430] py-6 text-center border-t border-[#d8cfcf]">
-      <p className="text-lg font-semibold">© 2025 Tiara Spa Reserved.</p>
+      <p className="text-lg font-semibold">© 2025 Tiara Spa. All Rights Reserved.</p>
 
       <div className="mt-4 flex flex-col items-center">
         <p className="font-medium">Contact us:</p>
