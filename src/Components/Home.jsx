@@ -17,19 +17,19 @@ const massageTypes = [
   {
     title: "Swedish Massage",
     image:
-      "https://www.bluetree-massage.com/wp-content/uploads/2019/07/eb5a8141-1.jpg",
+      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGRlZXAlMjB0aXNzdSUyMG1hc3NhZ2V8ZW58MHx8MHx8fDA%3D",
     desc: "Gentle and relaxing.",
   },
   {
     title: "Deep Tissue Massage",
     image:
-      "https://th.bing.com/th/id/OIP.IV7VcB5XOQP6FSzkSi1E5AHaFV?w=239&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7g",
+      "https://media.istockphoto.com/id/531237109/photo/medical-massage-closeup.webp?a=1&b=1&s=612x612&w=0&k=20&c=uev3naRzPw-5tdJSh6ipJsd8tB4AU3MmNzbQCOJT34I=",
     desc: "For sore muscles.",
   },
   {
     title: "Thai Massage",
     image:
-      "https://th.bing.com/th/id/OIP.c5L_H5XgT_zUzJztnYac0gHaEc?w=267&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      "https://plus.unsplash.com/premium_photo-1661682650688-8baab88b32ed?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8VGhhaSUyMG1hc3NhZ2V8ZW58MHx8MHx8fDA%3D",
     desc: "Stretch and release tension.",
   },
   {
