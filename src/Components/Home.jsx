@@ -1,15 +1,17 @@
 
 
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import emailjs from "emailjs-com"; // Import emailjs library
 import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
+import Confetti from "react-confetti";
+
 
 const massageTypes = [
   {
     title: "Aromatherapy",
     image:
-      "https://w0.peakpx.com/wallpaper/151/363/HD-wallpaper-spa-rest-saloon-massage.jpg",
+      "https://secretoasisspa.co.uk/wp-content/uploads/2023/10/secret-oasis-spa-aromatherapy-massage_safety.jpg",
     desc: "Relax and rejuvenate.",
   },
   {
@@ -51,6 +53,32 @@ const Home = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [gender, setGender] = useState(""); // ✅ Add Gender State
+  // const [showWelcomePopup, setShowWelcomePopup] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(true);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Stop confetti after 5 seconds automatically
+    setTimeout(() => setShowConfetti(false), 5000);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // const closeWelcomePopup = () => {
+  //   setShowWelcomePopup(false);
+  //   setShowConfetti(false);
+  // };
+    
 
   const openModal = (massage) => {
     setSelectedMassage(massage);
@@ -124,64 +152,66 @@ const Home = () => {
 
   return (
     <div className="bg-[#F9F7F2] ">
-    <div className="bg-[#F9F7F2]">
-  {/* ✅ Image Section */}
-  <motion.div
-      className="w-full h-60 md:h-80 lg:h-96"
-      initial={{ opacity: 0, scale: 0.8 }} // Start small and hidden
-      animate={{ opacity: 1, scale: 1 }} // Fade in and zoom in
-      transition={{ duration: 1, ease: "easeOut" }} // Smooth effect
-    >
-      <motion.img
-        className="w-full h-full object-cover"
-        src="https://media.istockphoto.com/id/1325095289/photo/still-life-closeup-of-a-tranquil-spa-arrangement.jpg?s=612x612&w=0&k=20&c=yrNXIAA1mSSzypzbKMTl4807nRG4S8rs5RsWb-J0M9U="
-        alt="Spa Arrangement"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      />
-    </motion.div>
+<div className="bg-[#F9F7F2] relative mt-4">
+      {/* ✅ Confetti Effect (Now Above Popup) */}
+      {showConfetti && <Confetti width={windowSize.width} height={windowSize.height} />}
 
-  {/* ✅ Header Section */}
-  <header className="text-center py-16 bg-[#F9F7F2] text-[#3E2D2C]">
-      {/* ✅ Experience Section */}
+      {/* ✅ Image Section */}
       <motion.div
-        className="px-6 max-w-4xl mx-auto"
-        initial={{ opacity: 0, y: 50 }} // Start hidden and move up
-        animate={{ opacity: 1, y: 0 }} // Animate to visible
-        transition={{ duration: 1, ease: "easeOut" }} // Smooth animation
+        className="w-full h-60 md:h-80 lg:h-96"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
-        <motion.h2
-          className="text-xl lg:text-2xl font-semibold text-[#5C3B44]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-        >
-          Experience Tiara Spa Near You
-        </motion.h2>
-        <motion.p
-          className="mt-3 text-[#3E2D2C] leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-        >
-          The daily grind of work and personal life takes a toll on your body and mind.
-          A regular spa helps you unwind, relax, and re-energize. Choose from our signature,
-          home-crafted massages & therapies or opt for the classic Deep Tissue Massage,
-          Swedish Massage, Ayurvedic Massages, or the Thai Massage.
-        </motion.p>
-        <motion.p
-          className="mt-3 text-[#3E2D2C] leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          Tiara Spa therapies will help keep your body running smoothly, so you can
-          conquer that half marathon or power through a full day of meetings.
-        </motion.p>
+        <motion.img
+          className="w-full h-full object-cover"
+          src="https://media.istockphoto.com/id/1325095289/photo/still-life-closeup-of-a-tranquil-spa-arrangement.jpg?s=612x612&w=0&k=20&c=yrNXIAA1mSSzypzbKMTl4807nRG4S8rs5RsWb-J0M9U="
+          alt="Spa Arrangement"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        />
       </motion.div>
-    </header>
-</div>
+
+      {/* ✅ Header Section */}
+      <header className="text-center py-16 bg-[#F9F7F2] text-[#3E2D2C]">
+        <motion.div
+          className="px-6 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <motion.h2
+            className="text-xl lg:text-2xl font-semibold text-[#5C3B44]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            Experience Tiara Spa Near You
+          </motion.h2>
+          <motion.p
+            className="mt-3 text-[#3E2D2C] leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            The daily grind of work and personal life takes a toll on your body and mind.
+            A regular spa helps you unwind, relax, and re-energize. Choose from our signature,
+            home-crafted massages & therapies or opt for the classic Deep Tissue Massage,
+            Swedish Massage, Ayurvedic Massages, or the Thai Massage.
+          </motion.p>
+          <motion.p
+            className="mt-3 text-[#3E2D2C] leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            Tiara Spa therapies will help keep your body running smoothly, so you can
+            conquer that half marathon or power through a full day of meetings.
+          </motion.p>
+        </motion.div>
+      </header>
+    </div>
 
       <section className="container mx-auto py-10 px-4">
         <h2 className="text-2xl font-semibold text-[#3E2D2C] mb-6 text-center">
