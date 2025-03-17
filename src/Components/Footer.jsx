@@ -116,8 +116,8 @@ const Footer = () => {
 
         {/* Location and Services Information */}
         <div className="mt-6 text-sm text-[#5b3430]">
-          <p>Visit Us: <span className="font-semibold">123 Tiara Road, City Name</span></p>
-          <p>Explore Our Services: <a href="/services" className="text-[#5b3430] hover:underline">View Our Services</a></p>
+          <p>Visit Us: <span className="font-semibold">near indian oil petrol pump, Sector 3, HSR Layout, Bengaluru, Karnataka 560102</span></p>
+          <p>Explore Our Services: <a href="https://g.co/kgs/jrYT45P" target="_blank" rel="noreferrer" className="text-[#5b3430] hover:underline">View Our Services</a></p>
         </div>
 
         {/* Legal Links */}

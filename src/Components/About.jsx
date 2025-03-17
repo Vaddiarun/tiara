@@ -117,139 +117,44 @@
 // };
 
 // export default About;
-
-
-import React from "react";
+import React, { useState } from "react";
+import { Button, Dialog, DialogTitle, DialogContent, Typography, IconButton } from "@mui/material";
+import PhoneIcon from "@mui/icons-material/Phone";
+import CloseIcon from "@mui/icons-material/Close";
 
 const About = () => {
   const testimonials = [
-    {
-      name: "Kunal",
-      review:
-        "Absolutely amazing service! The therapist was professional and very skilled. Highly recommend!",
-      rating: 5,
-    },
-    {
-      name: "Gautam",
-      review:
-        "Convenient, relaxing, and worth every penny. Will definitely book again!",
-      rating: 4,
-    },
-    {
-      name: "Deepthi",
-      review:
-        "Loved the experience! Perfect for unwinding after a long day. Excellent service.",
-      rating: 5,
-    },
-    {
-      name: "Vamsi",
-      review:
-        "The service exceeded my expectations. The atmosphere was calm, and the therapist was highly skilled.",
-      rating: 5,
-    },
-    {
-      name: "Anusha",
-      review:
-        "Great experience! The staff was friendly and professional. Would definitely recommend to friends.",
-      rating: 4,
-    },
+    { name: "Kunal", review: "Absolutely amazing service! The therapist was professional and very skilled. Highly recommend!", rating: 5 },
+    { name: "Gautam", review: "Convenient, relaxing, and worth every penny. Will definitely book again!", rating: 4 },
+    { name: "Deepthi", review: "Loved the experience! Perfect for unwinding after a long day. Excellent service.", rating: 5 },
+    { name: "Vamsi", review: "The service exceeded my expectations. The atmosphere was calm, and the therapist was highly skilled.", rating: 5 },
+    { name: "Anusha", review: "Great experience! The staff was friendly and professional. Would definitely recommend to friends.", rating: 4 },
   ];
-  
 
-  const renderStars = (count) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <span
-        key={index}
-        className={`text-[#A0A051] ${index < count ? "" : "opacity-30"}`}
-      >
-        ★
-      </span>
-    ));
-  };
+  const renderStars = (count) => (
+    Array.from({ length: 5 }, (_, index) => (
+      <span key={index} className={`text-[#A0A051] ${index < count ? "" : "opacity-30"}`}>★</span>
+    ))
+  );
+
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="bg-[#F9F7F2] py-16 px-6 text-[#3E2D2C]">
       {/* About Us Section */}
-      <h2 className="text-3xl font-semibold text-[#5C3B44] text-center mb-6">
-        About Us
-      </h2>
+      <h2 className="text-3xl font-semibold text-[#5C3B44] text-center mb-6">About Us</h2>
       <p className="text-lg leading-relaxed text-center max-w-3xl mx-auto">
-        For the past <span className="font-bold">4 years</span>, we have served
-        over <span className="font-bold">3 lakh happy customers</span> with
-        professional massage services at their doorstep. Our skilled therapists
-        ensure relaxation and rejuvenation in the comfort of your home.
+        For the past <span className="font-bold">4 years</span>, we have served over 
+        <span className="font-bold"> 3 lakh happy customers</span> with professional massage services at their doorstep. 
+        Our skilled therapists ensure relaxation and rejuvenation in the comfort of your home.
       </p>
-      <p className="text-lg leading-relaxed text-center mt-4 max-w-3xl mx-auto">
-        Our mission is to provide top-notch wellness services conveniently and
-        professionally, ensuring you always feel your best.
-      </p>
-
-      {/* Experience Section */}
-      <div className="mt-12 text-center">
-        <h3 className="text-2xl font-semibold text-[#5C3B44] mb-4">
-          Experience Tiara Spa Near You
-        </h3>
-        <p className="text-lg leading-relaxed max-w-4xl mx-auto">
-          The daily grind of work and personal life takes a toll on your body
-          and mind. A regular spa helps you unwind, relax, and re-energize.
-          Choose from our signature, home-crafted massages & therapies or opt
-          for the classic Deep Tissue Massage, Swedish Massage, Ayurvedic
-          Massages, or the Thai Massage.
-        </p>
-        <p className="text-lg leading-relaxed mt-3 max-w-4xl mx-auto">
-          Tiara Spa therapies will help keep your body running smoothly, so you
-          can conquer that half marathon or power through a full day of
-          meetings.
-        </p>
-      </div>
-
-      {/* Problem Solving Section */}
-      <div className="mt-12 text-center">
-        <h3 className="text-2xl font-semibold text-[#5C3B44] mb-4">
-          We Solve Your Problems
-        </h3>
-        <p className="text-lg leading-relaxed max-w-4xl mx-auto">
-          At our massage service, we understand the unique challenges many of
-          our clients face. Whether it's the pain from sore muscles, the need
-          for firmer skin, or body relaxation, we are here to help you feel
-          more confident and stress-free:
-        </p>
-        <ul className="list-disc pl-6 mt-4 max-w-4xl mx-auto text-lg">
-          <li>
-            <strong>Muscle Pain Relief:</strong> Our therapeutic massages help
-            relieve muscle tension and pain, ensuring a soothing experience for
-            both body and mind.
-          </li>
-          <li>
-            <strong>Jet Lag Recovery:</strong> Our Jet Lag Therapy Massage is
-            designed to relax your body after long travel and ensure you feel
-            refreshed.
-          </li>
-          <li>
-            <strong>Deep Relaxation:</strong> Our premium therapies focus on
-            stress relief, better sleep, and an overall rejuvenating
-            experience.
-          </li>
-          <li>
-            <strong>Extra Services for Happiness:</strong> We offer various
-            additional services, including aromatherapy, deep tissue massage,
-            and other wellness treatments to make your experience even more
-            luxurious.
-          </li>
-        </ul>
-      </div>
 
       {/* Testimonials Section */}
       <div className="mt-12">
-        <h3 className="text-2xl font-semibold text-[#5C3B44] text-center mb-6">
-          What Our Customers Say
-        </h3>
+        <h3 className="text-2xl font-semibold text-[#5C3B44] text-center mb-6">What Our Customers Say</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-md border border-gray-200 transition-all hover:scale-105 transform duration-300"
-            >
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 transition-all hover:scale-105 transform duration-300">
               <p className="font-medium mb-2">"{testimonial.review}"</p>
               <div className="flex items-center justify-between mt-4">
                 <span className="font-bold">{testimonial.name}</span>
@@ -260,15 +165,79 @@ const About = () => {
         </div>
       </div>
 
-      {/* Prebook & Request Callback Buttons */}
+      {/* Buttons & Popup */}
       <div className="mt-12 flex justify-center gap-4">
-        <button className="bg-[#5C3B44] text-[#F9F7F2] px-6 py-3 rounded-lg font-semibold hover:bg-[#3E2D2C] transition duration-300">
+        <Button
+          variant="contained"
+          sx={{
+            bgcolor: "#5C3B44",
+            color: "#F9F7F2",
+            fontWeight: "bold",
+            borderRadius: "8px",
+            padding: "10px 20px",
+            "&:hover": { bgcolor: "#3E2D2C" },
+          }}
+          onClick={() => setOpen(true)}
+        >
           PREBOOK AND SAVE
-        </button>
-        <button className="bg-[#5C3B44] text-[#F9F7F2] px-6 py-3 rounded-lg font-semibold hover:bg-[#3E2D2C] transition duration-300">
+        </Button>
+
+        <Button
+          variant="contained"
+          sx={{
+            bgcolor: "#5C3B44",
+            color: "#F9F7F2",
+            fontWeight: "bold",
+            borderRadius: "8px",
+            padding: "10px 20px",
+            "&:hover": { bgcolor: "#3E2D2C" },
+          }}
+          onClick={() => setOpen(true)}
+        >
           REQUEST CALLBACK
-        </button>
+        </Button>
       </div>
+
+      {/* Enhanced Popup Dialog */}
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        sx={{
+          "& .MuiPaper-root": {
+            borderRadius: "16px",
+            padding: "20px",
+            maxWidth: "400px",
+          },
+        }}
+      >
+        <DialogTitle sx={{ fontWeight: "bold", color: "#5C3B44", textAlign: "center" }}>
+          Contact Us
+          <IconButton
+            aria-label="close"
+            onClick={() => setOpen(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: "#5C3B44",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
+        <DialogContent sx={{ textAlign: "center" }}>
+          <PhoneIcon sx={{ fontSize: 50, color: "#5C3B44", marginBottom: "10px" }} />
+          <Typography variant="h6" sx={{ color: "#3E2D2C", fontWeight: "bold" }}>
+            Call Now:
+          </Typography>
+          <Typography variant="h5" sx={{ color: "#5C3B44", fontWeight: "bold", marginTop: "5px" }}>
+            <a href="tel:6363595881" style={{ textDecoration: "none", color: "#5C3B44" }}>
+            6363595881
+            </a>
+          </Typography>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
