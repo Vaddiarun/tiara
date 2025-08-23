@@ -58,7 +58,7 @@ const Navbar = () => {
               exit={{ x: "-100%", opacity: 0, transition: { duration: 0.3 } }}
               className="menu-container lg:hidden absolute left-0 top-0 backdrop-blur-xl bg-[#F9F7F2]/90 w-3/4 h-screen p-10 flex flex-col items-center text-center shadow-2xl z-50 rounded-r-xl"
             >
-            {['Home', 'About', 'Contact', 'Hiring'].map((item, index) => (
+            {['Home', 'About', 'Contact', 'Hiring','Course'].map((item, index) => (
   <li key={index} className="my-4 w-full">
     <Link
       to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
