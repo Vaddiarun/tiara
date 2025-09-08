@@ -7,6 +7,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import HiringPage from "./Components/Hiring";
 import Course from "./Components/Course";
+import { Analytics } from "@vercel/analytics/react"
 
 const App = () => {
   return (
