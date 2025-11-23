@@ -2,46 +2,47 @@ import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
-import Confetti from "react-confetti";
 import { useNavigate } from "react-router-dom";
+import Hero3D from "./Hero3D";
+import FallingIcons from "./FallingIcons";
 
 /* ================== Data ================== */
 const massageTypes = [
   {
     title: "Aromatherapy",
     image:
-      "https://secretoasisspa.co.uk/wp-content/uploads/2023/10/secret-oasis-spa-aromatherapy-massage_safety.jpg",
-    desc: "Relax and rejuvenate.",
+      "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80",
+    desc: "Relax and rejuvenate with essential oils.",
   },
   {
     title: "Swedish Massage",
     image:
-      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&auto=format&fit=crop&q=60",
-    desc: "Gentle and relaxing.",
+      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80",
+    desc: "Gentle and relaxing full-body massage.",
   },
   {
     title: "Deep Tissue Massage",
     image:
-      "https://media.istockphoto.com/id/531237109/photo/medical-massage-closeup.webp?a=1&b=1&s=612x612&w=0&k=20&c=uev3naRzPw-5tdJSh6ipJsd8tB4AU3MmNzbQCOJT34I=",
-    desc: "For sore muscles.",
+      "https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=800&q=80",
+    desc: "Relieve chronic muscle tension.",
   },
   {
     title: "Thai Massage",
     image:
-      "https://plus.unsplash.com/premium_photo-1661682650688-8baab88b32ed?w=600&auto=format&fit=crop&q=60",
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
     desc: "Stretch and release tension.",
   },
   {
     title: "Jet Lag Therapy",
     image:
-      "https://tattvaspa.com/wp-content/uploads/2023/04/JET-LAG-THERAPY-MASSAGE.webp",
-    desc: "For stiffness release.",
+      "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+    desc: "Revitalize after long travels.",
   },
   {
     title: "Tiara Signature Massage",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC97LN7h6iZya5qWIb0rv4BfUCpNB8iI-YzA&s",
-    desc: "Get fit and sculpted booties.",
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80",
+    desc: "Our exclusive holistic treatment.",
   },
 ];
 
@@ -54,11 +55,6 @@ const Home = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [gender, setGender] = useState("");
-  const [showConfetti, setShowConfetti] = useState(true);
-  const [windowSize, setWindowSize] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 360,
-    height: typeof window !== "undefined" ? window.innerHeight : 640,
-  });
 
   // Coupon popup
   const [showCouponModal, setShowCouponModal] = useState(false);
@@ -67,17 +63,10 @@ const Home = () => {
   const [couponCode, setCouponCode] = useState("");
 
   useEffect(() => {
-    const handleResize = () =>
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("resize", handleResize);
-
-    const off = setTimeout(() => setShowConfetti(false), 5000);
     const couponTimer = setTimeout(() => setShowCouponModal(true), 5000);
 
     return () => {
-      clearTimeout(off);
       clearTimeout(couponTimer);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -177,39 +166,34 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
         await navigator.clipboard.writeText(couponCode);
         toast.success("Coupon code copied!", { position: "top-center" });
       }
-    } catch {}
+    } catch { }
   };
 
   /* ================== UI ================== */
   return (
-    <div className="bg-[#F9F7F2] text-[#3E2D2C]">
-      {/* Hero */}
-      <div className="relative">
-        {showConfetti && (
-          <Confetti width={windowSize.width} height={windowSize.height} />
-        )}
-        <motion.div
-          className="w-full"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
-          <div className="w-full overflow-hidden">
-            <img
-              src="https://media.istockphoto.com/id/1325095289/photo/still-life-closeup-of-a-tranquil-spa-arrangement.jpg?s=612x612&w=0&k=20&c=yrNXIAA1mSSzypzbKMTl4807nRG4S8rs5RsWb-J0M9U="
-              alt="Spa Arrangement"
-              loading="eager"
-              className="w-full object-cover
-                         h-[48vh] sm:h-[52vh] md:h-[56vh] lg:h-[60vh] xl:h-[64vh]"
-            />
-          </div>
-        </motion.div>
+    <div className="text-[#3E2D2C] relative">
+      {/* Falling Icons Animation */}
+      <FallingIcons />
 
-        <header className="text-center py-6 sm:py-8">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#5C3B44]">
-            Experience Tiara Spa Near You
+      {/* Hero */}
+      <div className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <Hero3D />
+        {/* {showConfetti && (
+          <Confetti width={windowSize.width} height={windowSize.height} />
+        )} */}
+        <motion.div
+          className="relative z-10 text-center p-8 glass-panel"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-5xl sm:text-7xl font-bold text-[#5C3B44] mb-6 tracking-tight">
+            Find Your Serenity
           </h2>
-        </header>
+          <p className="text-xl sm:text-2xl text-[#3E2D2C] font-light">
+            Luxury & Relaxation Reimagined
+          </p>
+        </motion.div>
       </div>
 
       {/* Services */}
@@ -220,10 +204,15 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
 
         <div className="grid gap-5 sm:gap-6 grid-cols-1 xs:grid-cols-2 md:grid-cols-3">
           {massageTypes.map((type, i) => (
-            <button
+            <motion.button
               key={i}
               onClick={() => openModal(type)}
-              className="text-left border rounded-xl p-4 shadow-sm hover:shadow-md bg-white transition focus:outline-none focus:ring-2 focus:ring-[#5C3B44]/30"
+              className="text-left border border-[#D1BEB0]/30 rounded-xl p-4 shadow-sm hover:shadow-xl bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#5C3B44]/30 group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ type: "spring", stiffness: 50, damping: 20, delay: i * 0.1 }}
+              whileHover={{ y: -8, transition: { type: "spring", stiffness: 300 } }}
             >
               <div className="w-full overflow-hidden rounded-lg">
                 <img
@@ -232,16 +221,16 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                   loading="lazy"
                   width="640"
                   height="480"
-                  className="w-full aspect-[4/3] sm:aspect-[16/10] object-cover"
+                  className="w-full aspect-[4/3] sm:aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-[#5C3B44] mt-3">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#5C3B44] mt-4 group-hover:text-[#A0A051] transition-colors">
                 {type.title}
               </h3>
-              <p className="text-sm sm:text-base text-[#6B5B57]">
+              <p className="text-sm sm:text-base text-[#6B5B57] mt-1">
                 {type.desc}
               </p>
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -251,8 +240,8 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
             onClick={() => setShowCouponModal(true)}
             className="inline-flex items-center justify-center w-full sm:w-auto
                bg-[#5C3B44] hover:bg-[#3E2D2C] text-white
-               px-6 py-3 rounded-lg border border-[#D1BEB0]/60
-               shadow-md transition-colors"
+               px-8 py-4 rounded-full border border-transparent
+               shadow-lg transition-all duration-300 hover:scale-105"
           >
             🎁 Get 20% OFF Coupon
           </button>
@@ -490,8 +479,8 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                     >
                       {/* copy icon */}
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                        <rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="2"/>
-                        <rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="2"/>
+                        <rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="2" />
+                        <rect x="3" y="3" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="2" />
                       </svg>
                       Copy
                     </button>
