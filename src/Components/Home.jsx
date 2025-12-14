@@ -56,6 +56,9 @@ const Home = () => {
   const [selectedType, setSelectedType] = useState("");
   const [gender, setGender] = useState("");
 
+  // Mouse tracking for 3D effects
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
   // Coupon popup
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [couponName, setCouponName] = useState("");
@@ -176,28 +179,239 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
       <FallingIcons />
 
       {/* Hero */}
-      <div className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <div
+        className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+          setMousePosition({ x, y });
+        }}
+        onMouseLeave={() => setMousePosition({ x: 0, y: 0 })}
+        style={{ perspective: '1000px' }}
+      >
         <Hero3D />
-        {/* {showConfetti && (
-          <Confetti width={windowSize.width} height={windowSize.height} />
-        )} */}
+
+        {/* Animated gradient orbs with parallax */}
         <motion.div
-          className="relative z-10 text-center p-8 glass-panel"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#5C3B44]/20 rounded-full blur-3xl pointer-events-none"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30}px)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#D1BEB0]/30 rounded-full blur-3xl pointer-events-none"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.6, 0.4],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+
+        {/* Additional floating orb for depth */}
+        <motion.div
+          className="absolute top-1/2 right-1/3 w-64 h-64 bg-[#A0A051]/15 rounded-full blur-3xl pointer-events-none"
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{
+            transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * -25}px)`,
+            transition: 'transform 0.3s ease-out'
+          }}
+        />
+
+        {/* Enhanced glass panel with 3D tilt */}
+        <motion.div
+          className="relative z-10 text-center p-8 sm:p-12 max-w-4xl mx-4"
+          style={{
+            background: 'rgba(255, 255, 255, 0.55)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+            borderRadius: '24px',
+            boxShadow: `
+              0 ${8 + mousePosition.y * 5}px ${32 + Math.abs(mousePosition.x) * 10}px rgba(0, 0, 0, ${0.1 + Math.abs(mousePosition.y) * 0.05}), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.6),
+              0 0 60px rgba(92, 59, 68, ${0.1 + Math.abs(mousePosition.x) * 0.05})
+            `,
+            transform: `
+              rotateY(${mousePosition.x * 5}deg) 
+              rotateX(${mousePosition.y * -5}deg)
+              translateZ(20px)
+            `,
+            transformStyle: 'preserve-3d',
+            transition: 'transform 0.3s ease-out, box-shadow 0.3s ease-out',
+          }}
+          initial={{ opacity: 0, y: 60, scale: 0.9 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 1,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
         >
-          <h2 className="text-5xl sm:text-7xl font-bold text-[#5C3B44] mb-6 tracking-tight">
-            Find Your Serenity
-          </h2>
-          <p className="text-xl sm:text-2xl text-[#3E2D2C] font-light">
-            Luxury & Relaxation Reimagined
-          </p>
+          {/* Floating animation with layered depth */}
+          <motion.div
+            animate={{
+              y: [0, -10, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              transform: `translateZ(30px)`,
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {/* Main heading with word animation and 3D depth */}
+            <motion.h1
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight"
+              style={{
+                background: 'linear-gradient(135deg, #5C3B44 0%, #3E2D2C 50%, #5C3B44 100%)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                transform: `translateZ(40px)`,
+                textShadow: '0 10px 30px rgba(92, 59, 68, 0.3)',
+              }}
+            >
+              {["Find", "Your", "Serenity"].map((word, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block mr-3 sm:mr-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.3 + i * 0.2,
+                    ease: "easeOut"
+                  }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h1>
+
+            {/* Subtitle with depth */}
+            <motion.p
+              className="text-xl sm:text-2xl md:text-3xl text-[#3E2D2C] font-light mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              style={{
+                transform: `translateZ(25px)`,
+              }}
+            >
+              Luxury & Relaxation Reimagined
+            </motion.p>
+
+            {/* CTA Button with enhanced 3D */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
+              style={{
+                transform: `translateZ(50px)`,
+              }}
+            >
+              <motion.a
+                href="#services"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#5C3B44] text-white rounded-full font-medium text-lg shadow-lg hover:shadow-2xl transition-all duration-300"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(92, 59, 68, 0.4)",
+                  rotateZ: 2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                  rotateZ: 0,
+                }}
+                style={{
+                  boxShadow: `
+                    0 10px 30px rgba(92, 59, 68, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                  `,
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector('#services')?.scrollIntoView({
+                    behavior: 'smooth'
+                  });
+                }}
+              >
+                Explore Our Services
+                <motion.svg
+                  className="w-5 h-5"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </motion.svg>
+              </motion.a>
+            </motion.div>
+          </motion.div>
+
+          {/* Decorative 3D elements */}
+          <div
+            className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-[#D1BEB0]/30 to-transparent rounded-full blur-2xl pointer-events-none"
+            style={{
+              transform: `translateZ(10px) translate(${mousePosition.x * -15}px, ${mousePosition.y * 15}px)`,
+              transition: 'transform 0.3s ease-out'
+            }}
+          />
+          <div
+            className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-[#5C3B44]/20 to-transparent rounded-full blur-2xl pointer-events-none"
+            style={{
+              transform: `translateZ(15px) translate(${mousePosition.x * 20}px, ${mousePosition.y * -20}px)`,
+              transition: 'transform 0.3s ease-out'
+            }}
+          />
         </motion.div>
       </div>
 
       {/* Services */}
-      <section className="mx-auto max-w-screen-xl py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
+      <section id="services" className="mx-auto max-w-screen-xl py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
         <h2 className="text-xl sm:text-2xl font-semibold mb-6 text-center">
           Our Premium Massage Services
         </h2>
@@ -247,6 +461,81 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
           </button>
         </div>
       </section>
+
+      {/* Customer Reviews Section */}
+      <motion.section
+        className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-12"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#5C3B44] mb-3">
+            What Our Clients Say
+          </h2>
+          <p className="text-base sm:text-lg text-[#6B5B57] max-w-2xl mx-auto">
+            Real experiences from our valued customers
+          </p>
+        </div>
+
+        <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+          {/* Brand glows */}
+          <div className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-[#5C3B44]/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-[#D1BEB0]/25 blur-3xl" />
+
+          {/* Content wrapper */}
+          <div className="relative p-5 sm:p-8 bg-gradient-to-br from-[#3E2D2C]/30 via-[#5C3B44]/20 to-[#3E2D2C]/30">
+            <div className="rounded-2xl p-[1.5px] bg-gradient-to-r from-[#5C3B44]/70 via-[#D1BEB0]/65 to-[#3E2D2C]/70">
+              <div className="glass-card-brand rounded-2xl p-4 sm:p-6 md:p-8">
+                {/* Video container */}
+                <div className="relative w-full overflow-hidden rounded-xl shadow-xl">
+                  <video
+                    className="w-full h-auto rounded-xl"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    controls
+                    style={{
+                      willChange: 'transform',
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      perspective: '1000px'
+                    }}
+                  >
+                    <source
+                      src="https://res.cloudinary.com/dfxkazmkc/video/upload/v1765694345/WhatsApp_Video_2025-12-13_at_5.13.44_PM_j77vog.mp4"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                {/* Optional: Review details */}
+                <div className="mt-6 text-center">
+                  <p className="text-white/90 text-sm sm:text-base italic">
+                    "An amazing experience at Tiara Spa!"
+                  </p>
+                  <div className="flex items-center justify-center gap-1 mt-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-[#D1BEB0]"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.section>
 
       {/* Training Program — BRAND GLASS */}
       <motion.section
@@ -511,7 +800,7 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
       )}
 
       {/* Animations & Brand Glass helpers */}
-      <style jsx>{`
+      <style>{`
         @keyframes scaleUp {
           from {
             transform: scale(0.98);
