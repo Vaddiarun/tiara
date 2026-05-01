@@ -1,94 +1,134 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
+
+const LOGO_URL =
+  "https://res.cloudinary.com/dfxkazmkc/image/upload/e_auto_contrast/v1741424757/DALL_E_2025-03-08_14.33.48_-_A_sophisticated_and_elegant_logo_design_for_Tiara_Spa_featuring_a_graceful_lotus_flower_with_delicate_lines._The_design_should_have_a_luxurious_and_aik5nl.webp";
+
+const LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/#gallery", label: "Gallery" },
+  { to: "/course", label: "Training" },
+  { to: "/hiring", label: "Hiring" },
+  { to: "/contact", label: "Contact" },
+];
+
+const BOOK_URL = `https://wa.me/916363595881?text=${encodeURIComponent(
+  "Hello Tiara Spa, I would like to book a massage."
+)}`;
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
 
-  // Close menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".menu-container") && !e.target.closest(".menu-btn")) {
-        setIsMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleMenuClose = () => setIsMenuOpen(false);
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   return (
     <>
-      <nav className="glass-panel fixed w-full z-50 p-4 shadow-lg backdrop-blur-md bg-opacity-30">
-        <div className="container mx-auto flex justify-between items-center">
-          <Link to="/">
-            <img className="w-[60px]" src="https://res.cloudinary.com/dfxkazmkc/image/upload/e_auto_contrast/v1741424757/DALL_E_2025-03-08_14.33.48_-_A_sophisticated_and_elegant_logo_design_for_Tiara_Spa_featuring_a_graceful_lotus_flower_with_delicate_lines._The_design_should_have_a_luxurious_and_aik5nl.webp" alt="Logo" />
+      <nav className={`nav-root ${scrolled ? "scrolled" : ""}`}>
+        <div className="container-x flex items-center justify-between gap-6">
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src={LOGO_URL}
+              alt="Tiara Spa"
+              width="44"
+              height="44"
+              className="rounded-full object-cover"
+              onError={(e) => { e.currentTarget.style.display = "none"; }}
+            />
+            <span style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 500, color: "var(--dark)", letterSpacing: "-0.005em" }}>
+              Tiara <em style={{ fontStyle: "italic", color: "var(--primary)" }}>Spa</em>
+            </span>
           </Link>
-          <h1 className="text-2xl font-extrabold text-[#5C3B44]">Tiara Spa</h1>
 
-          {/* Desktop Menu */}
-          <ul className="hidden lg:flex gap-8 text-lg font-semibold text-[#3E2D2C]">
-            <li><Link to="/" className="hover:text-[#A0A051] transition-colors">Home</Link></li>
-            <li><Link to="/about" className="hover:text-[#A0A051] transition-colors">About</Link></li>
-            <li><Link to="/contact" className="hover:text-[#A0A051] transition-colors">Contact</Link></li>
-            <li><Link to="/hiring" className="hover:text-[#A0A051] transition-colors">Hiring</Link></li>
-            <li><Link to="/course" className="hover:text-[#A0A051] transition-colors">Course</Link></li>
+          <ul className="hidden lg:flex items-center gap-8 list-none m-0 p-0">
+            {LINKS.map((l) => (
+              <li key={l.to}>
+                <NavLink
+                  to={l.to}
+                  end={l.to === "/"}
+                  className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+                >
+                  {l.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
 
-          {/* Mobile Menu Button */}
+          <div className="hidden lg:flex items-center gap-3">
+            <a href={BOOK_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">
+              <FaWhatsapp /> Book Now
+            </a>
+          </div>
+
           <button
-            className="lg:hidden menu-btn focus:outline-none relative z-50 text-[#3E2D2C]"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`lg:hidden burger ${open ? "open" : ""}`}
+            aria-label="Toggle menu"
+            onClick={() => setOpen((o) => !o)}
           >
-            <motion.div animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }} className="w-8 h-0.5 bg-[#3E2D2C] mb-2 transition-transform duration-300"></motion.div>
-            <motion.div animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }} className="w-8 h-0.5 bg-[#3E2D2C] mb-2 transition-opacity duration-300"></motion.div>
-            <motion.div animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }} className="w-8 h-0.5 bg-[#3E2D2C] transition-transform duration-300"></motion.div>
+            <span /><span /><span />
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.ul
-              initial={{ x: "-100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1, transition: { type: "spring", stiffness: 80 } }}
-              exit={{ x: "-100%", opacity: 0, transition: { duration: 0.3 } }}
-              className="menu-container lg:hidden absolute left-0 top-0 backdrop-blur-xl bg-[#F9F7F2]/90 w-3/4 h-screen p-10 flex flex-col items-center text-center shadow-2xl z-50 rounded-r-xl"
-            >
-              {['Home', 'About', 'Contact', 'Hiring', 'Course'].map((item, index) => (
-                <li key={index} className="my-4 w-full">
-                  <Link
-                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-xl font-semibold text-[#5C3B44] relative group transition duration-300 ease-in-out"
-                    onClick={handleMenuClose}
-                  >
-                    {item}
-                    <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#A0A051] transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
       </nav>
 
-      {/* Padding to Prevent Overlapping */}
-      <div className="pt-20 lg:pt-24"></div>
-
-      {/* Overlay for Mobile Menu */}
       <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.5 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-0 bg-black z-40"
-            onClick={handleMenuClose}
-          ></motion.div>
+        {open && (
+          <>
+            <motion.div
+              key="overlay"
+              className="lg:hidden fixed inset-0 bg-black/40 z-[98]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setOpen(false)}
+            />
+            <motion.aside
+              key="drawer"
+              className="lg:hidden mobile-drawer"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 90, damping: 18 }}
+            >
+              {LINKS.map((l) => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  end={l.to === "/"}
+                  className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+              <a
+                href={BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-cta mt-6 self-start"
+              >
+                <FaWhatsapp /> Book Now
+              </a>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </>

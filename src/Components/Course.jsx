@@ -110,7 +110,7 @@ export default function CoursePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F2] flex flex-col items-center p-6">
+    <div className="min-h-screen bg-[#F9F7F2] flex flex-col items-center p-6 pt-32">
       <header className="w-full max-w-5xl flex flex-col items-center text-center mb-6">
         <h1 className="text-3xl font-bold text-[#3E2D2C]">Tiara Training Program</h1>
         <p className="text-[#6B5B57] mt-2">

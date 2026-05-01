@@ -96,7 +96,7 @@ const HiringPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#F9F7F2] p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#F9F7F2] p-6 pt-32">
       <h1 className="text-3xl font-bold text-[#3E2D2C] mb-4">We Are Hiring</h1>
 
       <div className="shadow-lg rounded-lg p-6 w-full max-w-md bg-white">
