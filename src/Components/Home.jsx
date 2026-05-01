@@ -67,6 +67,8 @@ const massageTypes = [
 ];
 
 const inr = (n) => `₹${n.toLocaleString("en-IN")}`;
+const DISCOUNT = 0.20;
+const discounted = (n) => Math.round((n * (1 - DISCOUNT)) / 10) * 10;
 
 const TESTIMONIALS = [
   { name: "Kunal", review: "Absolutely amazing service! Therapist was professional and skilled. Highly recommend.", rating: 5 },
@@ -156,6 +158,7 @@ const ServiceCard = ({ item, onBook }) => {
     >
       <div className="svc-img-wrap">
         <img src={item.image} alt={item.title} loading="lazy" />
+        <span className="svc-discount-badge">20% OFF</span>
         <div className="svc-overlay">
           <span className="book-now">Book This ↗</span>
         </div>
@@ -169,8 +172,11 @@ const ServiceCard = ({ item, onBook }) => {
         <p className="svc-desc">{item.desc}</p>
         <div className="svc-price-row">
           <div className="svc-price">
-            <span className="svc-price-amt">{inr(item.price)}</span>
-            <span className="svc-price-note">+ cab charges</span>
+            <div className="svc-price-line">
+              <span className="svc-price-strike">{inr(item.price)}</span>
+              <span className="svc-price-amt">{inr(discounted(item.price))}</span>
+            </div>
+            <span className="svc-price-note">20% OFF · + cab charges</span>
           </div>
           <button
             type="button"
@@ -241,7 +247,7 @@ const Home = () => {
     }
 
     const priceLabel = selectedMassage?.price
-      ? `${inr(selectedMassage.price)} (${selectedMassage.duration}) + cab charges`
+      ? `${inr(discounted(selectedMassage.price))} after 20% OFF (was ${inr(selectedMassage.price)}) · ${selectedMassage.duration} · + cab charges`
       : "";
 
     const params = {
@@ -536,11 +542,15 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
               </button>
               <div className="modal-header-img">
                 <img src={selectedMassage?.image} alt={selectedMassage?.title || ""} />
+                <span className="modal-discount-badge">20% OFF</span>
                 <h3>{selectedMassage?.title}</h3>
                 {selectedMassage && (
                   <div className="modal-price">
-                    <span>{inr(selectedMassage.price)}</span>
-                    <small>{selectedMassage.duration} · + cab charges</small>
+                    <div className="modal-price-line">
+                      <span className="modal-price-strike">{inr(selectedMassage.price)}</span>
+                      <span>{inr(discounted(selectedMassage.price))}</span>
+                    </div>
+                    <small>{selectedMassage.duration} · 20% OFF · + cab charges</small>
                   </div>
                 )}
               </div>

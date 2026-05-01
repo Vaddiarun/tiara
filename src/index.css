@@ -529,6 +529,73 @@ a, button { font-family: var(--font-body); }
   line-height: 1;
   letter-spacing: -0.01em;
 }
+.svc-price-line {
+  display: flex; align-items: baseline; gap: 10px;
+}
+.svc-price-strike {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(107, 91, 87, 0.6);
+  font-weight: 400;
+}
+.svc-discount-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 2;
+  padding: 6px 12px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(160, 160, 81, 0.4);
+  animation: badgePulse 2.4s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+.modal-discount-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  z-index: 3;
+  padding: 6px 14px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(160, 160, 81, 0.45);
+}
+.modal-price-line {
+  display: flex; align-items: baseline; gap: 10px; justify-content: flex-end;
+}
+.modal-price-strike {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+.training-discount-badge {
+  position: absolute;
+  top: -14px; left: 24px;
+  padding: 6px 14px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(160, 160, 81, 0.4);
+}
 .svc-price-note {
   font-size: 11px;
   color: var(--muted);

@@ -61,11 +61,15 @@ const Training = () => {
             <span className="limited-pulse">
               <span className="dot" /> Limited Seats
             </span>
+            <span className="training-discount-badge">20% OFF</span>
             <div className="price">
-              ₹2,000<small>+ cab charges</small>
+              ₹1,600<small>+ cab charges</small>
             </div>
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginTop: 6, letterSpacing: "0.04em" }}>
-              total program fee
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 4, textDecoration: "line-through" }}>
+              ₹2,000
+            </div>
+            <div style={{ fontSize: 12, color: "var(--sand)", marginTop: 6, letterSpacing: "0.04em" }}>
+              total program fee · 20% OFF applied
             </div>
             <div className="meta">
               <div><span>Sessions</span><span>5</span></div>
