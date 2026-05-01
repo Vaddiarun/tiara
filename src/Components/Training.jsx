@@ -62,7 +62,10 @@ const Training = () => {
               <span className="dot" /> Limited Seats
             </span>
             <div className="price">
-              ₹2,000<small>total fee</small>
+              ₹2,000<small>+ cab charges</small>
+            </div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginTop: 6, letterSpacing: "0.04em" }}>
+              total program fee
             </div>
             <div className="meta">
               <div><span>Sessions</span><span>5</span></div>

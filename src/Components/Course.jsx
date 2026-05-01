@@ -95,7 +95,7 @@ export default function CoursePage() {
       `Name: ${name}`,
       `Email: ${email}`,
       `Phone: ${phone}`,
-      `Program: ${COURSE_SESSIONS} sessions (₹${COURSE_PRICE})`,
+      `Program: ${COURSE_SESSIONS} sessions (₹${COURSE_PRICE} + cab charges)`,
       `Pre‑placement interest: ${interestedInPrePlacement ? "Yes" : "No"}`,
       imageUrl ? `Photo: ${imageUrl}` : null,
     ]
@@ -114,7 +114,7 @@ export default function CoursePage() {
       <header className="w-full max-w-5xl flex flex-col items-center text-center mb-6">
         <h1 className="text-3xl font-bold text-[#3E2D2C]">Tiara Training Program</h1>
         <p className="text-[#6B5B57] mt-2">
-          Learn with {COURSE_SESSIONS} focused sessions at <span className="font-semibold">₹{COURSE_PRICE}</span>.
+          Learn with {COURSE_SESSIONS} focused sessions at <span className="font-semibold">₹{COURSE_PRICE} + cab charges</span>.
           Complete the program to earn a certificate and get considered for a pre‑placement opportunity at Tiara.
         </p>
       </header>
@@ -209,7 +209,7 @@ export default function CoursePage() {
                   : "Send details to WhatsApp"
             }
           >
-            {uploading ? "Uploading…" : `Send to WhatsApp (₹${COURSE_PRICE})`}
+            {uploading ? "Uploading…" : `Send to WhatsApp (₹${COURSE_PRICE} + cab charges)`}
           </button>
 
           <p className="text-xs text-[#6B5B57] mt-3">

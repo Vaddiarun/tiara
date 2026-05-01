@@ -503,6 +503,60 @@ a, button { font-family: var(--font-body); }
   text-transform: uppercase;
   border-radius: 999px;
 }
+.svc-meta-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.svc-duration {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.svc-price-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 12px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(209, 190, 176, 0.4);
+}
+.svc-price { display: flex; flex-direction: column; }
+.svc-price-amt {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--primary);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.svc-price-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+.modal-price {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  z-index: 2;
+  text-align: right;
+  color: #fff;
+}
+.modal-price span {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  display: block;
+  line-height: 1;
+}
+.modal-price small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
 .svc-link {
   font-size: 14px;
   color: var(--primary);

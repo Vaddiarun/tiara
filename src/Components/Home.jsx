@@ -21,38 +21,52 @@ const massageTypes = [
     image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800",
     desc: "Botanical oils, slow strokes — release stress and rebalance the senses.",
     tag: "Relax",
+    duration: "60 min",
+    price: 2499,
   },
   {
     title: "Swedish Massage",
     image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800",
     desc: "Long, gliding strokes ease tension across the entire body.",
     tag: "Classic",
+    duration: "60 min",
+    price: 2499,
   },
   {
     title: "Deep Tissue Massage",
     image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800",
     desc: "Targeted pressure to dissolve chronic muscle knots and restore mobility.",
     tag: "Therapeutic",
+    duration: "60 min",
+    price: 2999,
   },
   {
     title: "Thai Massage",
     image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800",
     desc: "Assisted stretches and rhythmic compressions awaken the body.",
     tag: "Energising",
+    duration: "75 min",
+    price: 2999,
   },
   {
     title: "Jet Lag Therapy",
     image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800",
     desc: "A reset ritual after long travel — circulation, breath, recovery.",
     tag: "Recovery",
+    duration: "75 min",
+    price: 3499,
   },
   {
     title: "Tiara Signature Massage",
     image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800",
     desc: "Our holistic flagship treatment — curated for complete restoration.",
     tag: "Signature",
+    duration: "90 min",
+    price: 3999,
   },
 ];
+
+const inr = (n) => `₹${n.toLocaleString("en-IN")}`;
 
 const TESTIMONIALS = [
   { name: "Kunal", review: "Absolutely amazing service! Therapist was professional and skilled. Highly recommend.", rating: 5 },
@@ -147,10 +161,17 @@ const ServiceCard = ({ item, onBook }) => {
         </div>
       </div>
       <div className="svc-body">
+        <div className="svc-meta-row">
+          <span className="svc-tag">{item.tag}</span>
+          <span className="svc-duration">⏱ {item.duration}</span>
+        </div>
         <h3 className="svc-title">{item.title}</h3>
         <p className="svc-desc">{item.desc}</p>
-        <div className="svc-row">
-          <span className="svc-tag">{item.tag}</span>
+        <div className="svc-price-row">
+          <div className="svc-price">
+            <span className="svc-price-amt">{inr(item.price)}</span>
+            <span className="svc-price-note">+ cab charges</span>
+          </div>
           <button
             type="button"
             className="svc-link"
@@ -219,12 +240,17 @@ const Home = () => {
       return;
     }
 
+    const priceLabel = selectedMassage?.price
+      ? `${inr(selectedMassage.price)} (${selectedMassage.duration}) + cab charges`
+      : "";
+
     const params = {
       username,
       phone_number: phoneNumber,
       massage_type: selectedType,
       massage_title: selectedMassage?.title,
       gender,
+      price: priceLabel,
     };
 
     // Fire EmailJS BEFORE opening WhatsApp so the request is in-flight even
@@ -241,7 +267,7 @@ const Home = () => {
 - Phone: ${phoneNumber}
 - Massage Type: ${selectedType}
 - Massage Title: ${selectedMassage?.title}
-- Gender: ${gender}`;
+- Gender: ${gender}${priceLabel ? `\n- Price: ${priceLabel}` : ""}`;
 
     const whatsappURL = `https://wa.me/916363595881?text=${encodeURIComponent(message)}`;
     const win = window.open(whatsappURL, "_blank");
@@ -511,6 +537,12 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
               <div className="modal-header-img">
                 <img src={selectedMassage?.image} alt={selectedMassage?.title || ""} />
                 <h3>{selectedMassage?.title}</h3>
+                {selectedMassage && (
+                  <div className="modal-price">
+                    <span>{inr(selectedMassage.price)}</span>
+                    <small>{selectedMassage.duration} · + cab charges</small>
+                  </div>
+                )}
               </div>
               <form className="modal-body" onSubmit={handleSubmit}>
                 <div className="field">
