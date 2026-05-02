@@ -6,11 +6,11 @@ import { FaWhatsapp } from "react-icons/fa";
 import Stats from "./Stats";
 
 const TESTIMONIALS = [
-  { name: "Kunal", review: "Absolutely amazing service. Therapist was professional and very skilled.", rating: 5 },
-  { name: "Gautam", review: "Convenient, relaxing, and worth every rupee. Will definitely book again.", rating: 5 },
-  { name: "Deepthi", review: "Loved the experience — perfect for unwinding after a long day.", rating: 5 },
-  { name: "Vamsi", review: "Calm atmosphere, highly skilled therapist. Exceeded my expectations.", rating: 5 },
-  { name: "Anusha", review: "Friendly and professional staff. Would recommend to anyone.", rating: 4 },
+  { name: "Wanderlust IM", review: "Tiara Spa's home services are a game changer! Their therapists brought the spa experience right to my doorstep, and it was incredible.", rating: 5 },
+  { name: "Mithun", review: "I had a very pleasant experience with Tiara Doorstep Spa. The therapist was punctual, well-trained, and maintained complete professionalism.", rating: 5 },
+  { name: "Deepthi", review: "The ambience was relaxing, and I felt completely refreshed after the session. Best doorstep service in Bangalore.", rating: 5 },
+  { name: "Professional Work", review: "Professional therapist and amazing work. Highly satisfied with the hygiene and quality of products used.", rating: 5 },
+  { name: "Quality & Comfort", review: "I really appreciated the hygiene, quality of products used, and overall comfort. Truly a premium experience.", rating: 5 },
 ];
 
 const PILLS = [
@@ -89,6 +89,17 @@ const About = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center" style={{ marginTop: 24 }}>
+            <a 
+              href="https://www.google.com/search?q=Tiara+Doorstep+Spa+reviews" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: "var(--gold)", fontSize: 15, textDecoration: "underline" }}
+            >
+              See more authentic reviews on Google ↗
+            </a>
           </div>
 
           <div className="text-center" style={{ marginTop: 56, display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>

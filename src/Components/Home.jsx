@@ -71,11 +71,11 @@ const DISCOUNT = 0.20;
 const discounted = (n) => Math.round((n * (1 - DISCOUNT)) / 10) * 10;
 
 const TESTIMONIALS = [
-  { name: "Kunal", review: "Absolutely amazing service! Therapist was professional and skilled. Highly recommend.", rating: 5 },
-  { name: "Gautam", review: "Convenient, relaxing, worth every rupee. Will book again.", rating: 5 },
-  { name: "Deepthi", review: "Loved the experience — perfect for unwinding after a long week.", rating: 5 },
-  { name: "Vamsi", review: "Atmosphere felt calm at home, and the therapist was highly skilled.", rating: 5 },
-  { name: "Anusha", review: "Friendly, professional staff. Would definitely recommend to friends.", rating: 4 },
+  { name: "Wanderlust IM", review: "Tiara Spa's home services are a game changer! Their therapists brought the spa experience right to my doorstep, and it was incredible.", rating: 5 },
+  { name: "Mithun", review: "I had a very pleasant experience with Tiara Doorstep Spa. The therapist was punctual, well-trained, and maintained complete professionalism.", rating: 5 },
+  { name: "Deepthi", review: "The ambience was relaxing, and I felt completely refreshed after the session. Best doorstep service in Bangalore.", rating: 5 },
+  { name: "Professional Work", review: "Professional therapist and amazing work. Highly satisfied with the hygiene and quality of products used.", rating: 5 },
+  { name: "Quality & Comfort", review: "I really appreciated the hygiene, quality of products used, and overall comfort. Truly a premium experience.", rating: 5 },
 ];
 
 const BOOK_DIRECT_URL = `https://wa.me/916363595881?text=${encodeURIComponent(
@@ -120,7 +120,7 @@ const HeroCard = () => {
           <div className="stat-label">Massage Types</div>
         </div>
         <div>
-          <div className="stat-num">4.9★</div>
+          <div className="stat-num">5.0★</div>
           <div className="stat-label">Average Rating</div>
         </div>
       </div>
@@ -513,6 +513,18 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                   onClick={() => setTIdx(i)}
                 />
               ))}
+            </div>
+
+            <div className="text-center" style={{ marginTop: 32 }}>
+              <a 
+                href="https://www.google.com/search?q=Tiara+Doorstep+Spa+reviews" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn-outline"
+                style={{ fontSize: 14, padding: "10px 20px" }}
+              >
+                View all reviews on Google ↗
+              </a>
             </div>
           </div>
         </div>

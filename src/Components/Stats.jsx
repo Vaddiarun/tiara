@@ -4,7 +4,7 @@ const STATS = [
   { value: 300000, suffix: "+", label: "Happy Clients", format: "number" },
   { value: 4, suffix: "+", label: "Years of Service", format: "number" },
   { value: 6, suffix: "", label: "Treatments", format: "number" },
-  { value: 4.9, suffix: "★", label: "Average Rating", format: "decimal" },
+  { value: 5.0, suffix: "★", label: "Average Rating", format: "decimal" },
 ];
 
 const formatNum = (n, format) => {
