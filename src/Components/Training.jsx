@@ -63,7 +63,7 @@ const Training = () => {
             </span>
             <span className="training-discount-badge">20% OFF</span>
             <div className="price">
-              ₹1,600<small>+ cab charges</small>
+              ₹1,600<small>+ cab charges ₹500 extra</small>
             </div>
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 4, textDecoration: "line-through" }}>
               ₹2,000

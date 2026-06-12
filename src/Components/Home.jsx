@@ -176,7 +176,7 @@ const ServiceCard = ({ item, onBook }) => {
               <span className="svc-price-strike">{inr(item.price)}</span>
               <span className="svc-price-amt">{inr(discounted(item.price))}</span>
             </div>
-            <span className="svc-price-note">20% OFF · + cab charges</span>
+            <span className="svc-price-note">20% OFF · cab charges ₹500 extra</span>
           </div>
           <button
             type="button"
@@ -241,18 +241,21 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!gender) {
-      toast.error("Please select a gender.", { position: "top-center" });
+    const name = username.trim();
+    const phone = phoneNumber.trim();
+
+    if (!name || !phone || !selectedType || !gender) {
+      toast.error("Please fill all booking fields.", { position: "top-center" });
       return;
     }
 
     const priceLabel = selectedMassage?.price
-      ? `${inr(discounted(selectedMassage.price))} after 20% OFF (was ${inr(selectedMassage.price)}) · ${selectedMassage.duration} · + cab charges`
+      ? `${inr(discounted(selectedMassage.price))} after 20% OFF (was ${inr(selectedMassage.price)}) · ${selectedMassage.duration} · cab charges ₹500 extra`
       : "";
 
     const params = {
-      username,
-      phone_number: phoneNumber,
+      username: name,
+      phone_number: phone,
       massage_type: selectedType,
       massage_title: selectedMassage?.title,
       gender,
@@ -269,8 +272,8 @@ const Home = () => {
     );
 
     const message = `Hello, I would like to book a massage:
-- Name: ${username}
-- Phone: ${phoneNumber}
+- Name: ${name}
+- Phone: ${phone}
 - Massage Type: ${selectedType}
 - Massage Title: ${selectedMassage?.title}
 - Gender: ${gender}${priceLabel ? `\n- Price: ${priceLabel}` : ""}`;
@@ -562,7 +565,7 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                       <span className="modal-price-strike">{inr(selectedMassage.price)}</span>
                       <span>{inr(discounted(selectedMassage.price))}</span>
                     </div>
-                    <small>{selectedMassage.duration} · 20% OFF · + cab charges</small>
+                    <small>{selectedMassage.duration} · 20% OFF · cab charges ₹500 extra</small>
                   </div>
                 )}
               </div>
@@ -573,6 +576,7 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                     placeholder="Your name"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="field">
@@ -581,12 +585,14 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                     placeholder="Phone number"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="field">
                   <select
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
+                    required
                   >
                     <option value="">Select Massage Type</option>
                     {massageTypes.map((m) => (
@@ -595,7 +601,7 @@ I got a coupon code: ${code} for 20% OFF on my massage booking.`;
                   </select>
                 </div>
                 <div className="field">
-                  <select value={gender} onChange={(e) => setGender(e.target.value)}>
+                  <select value={gender} onChange={(e) => setGender(e.target.value)} required>
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
