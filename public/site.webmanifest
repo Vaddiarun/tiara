@@ -1,21 +1,22 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Tiara Spa",
+  "short_name": "Tiara Spa",
   "icons": [
     {
-      "src": "/favicon.png/web-app-manifest-192x192.png",
+      "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/favicon.png/web-app-manifest-512x512.png",
+      "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "start_url": "/",
+  "theme_color": "#5C3B44",
   "background_color": "#ffffff",
   "display": "standalone"
 }
